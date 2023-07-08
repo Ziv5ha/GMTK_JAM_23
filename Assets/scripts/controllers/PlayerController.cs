@@ -8,7 +8,8 @@ public class PlayerController: MonoBehaviour {
 	[SerializeField] private PlayerView PlayerViewRef;
 	//[SerializeField] private SpriteRenderer spriteRenderer;
 	[SerializeField] private GameData GameDataRef;
-
+	private float delay = 1f; 
+	private bool attackBlocked;
 	private bool _isCrouching;
 	public bool IsCrouching {
 		get {
@@ -44,11 +45,15 @@ public class PlayerController: MonoBehaviour {
 				Debug.Log($"!@# Crouch Punch!");
 			} else {
 				GameDataRef.FixStreetItem(StreetItem.InteractionType.Punch);
+				PlayerViewRef.TriggerPunch();
 				Debug.Log("Punch!");
 			}
 		}
 	}
 	public void Kick(InputAction.CallbackContext context) {
+		if(attackBlocked){
+			return;
+		}
 		// call view kick.
 		if (context.performed) {
 			if (IsCrouching) {
@@ -59,5 +64,11 @@ public class PlayerController: MonoBehaviour {
 				Debug.Log("Kick!");
 			}
 		}
+		attackBlocked = true;
+		StartCoroutine(DelayAttack());
+	}
+	private IEnumerator DelayAttack(){
+		yield return new WaitForSeconds(delay);
+		attackBlocked =false;
 	}
 }

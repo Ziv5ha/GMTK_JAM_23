@@ -25,6 +25,9 @@ public class PlayerView: MonoBehaviour {
 
     }
 
+	public void TriggerPunch(){
+		animator.SetTrigger("punch");
+	}
     private MovementState GetAnimationState()
     {
 		if (PlayerControllerRef.IsCrouching){
