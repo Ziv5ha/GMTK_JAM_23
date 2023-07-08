@@ -8,7 +8,7 @@ public class PlayerController: MonoBehaviour {
 	[SerializeField] private PlayerView PlayerViewRef;
 	//[SerializeField] private SpriteRenderer spriteRenderer;
 	[SerializeField] private GameData GameDataRef;
-	
+
 	private bool _isCrouching;
 	public bool IsCrouching {
 		get {
@@ -30,31 +30,31 @@ public class PlayerController: MonoBehaviour {
 
 	public void Crouch(InputAction.CallbackContext context) {
 		_isCrouching = context.performed;
-		if (context.performed) {
-			Debug.Log($"Crouch! performed: {IsCrouching}");
-		} else if (context.canceled) {
-			Debug.Log($"Crouch! cancelled: {IsCrouching}");
-		}
+		//if (context.performed) {
+		//	Debug.Log($"Crouch! performed: {IsCrouching}");
+		//} else if (context.canceled) {
+		//	Debug.Log($"Crouch! cancelled: {IsCrouching}");
+		//}
 	}
 	public void Punch(InputAction.CallbackContext context) {
 		// call view punch.
 		if (context.performed) {
 			GameDataRef.FixStreetItem(
-				IsCrouching 
+				IsCrouching
 				? StreetItem.InteractionType.CrouchPunch
-				:StreetItem.InteractionType.Punch
+				: StreetItem.InteractionType.Punch
 			);
-			PlayerViewRef.TriggerPunch();		
+			PlayerViewRef.TriggerPunch();
 		}
 	}
 	public void Kick(InputAction.CallbackContext context) {
-				// call view kick.
+		// call view kick.
 		if (context.performed) {
-			GameDataRef.FixStreetItem(IsCrouching 
-				? StreetItem.InteractionType.CrouchPunch
-				:StreetItem.InteractionType.Punch);
+			GameDataRef.FixStreetItem(IsCrouching
+				? StreetItem.InteractionType.CrouchKick
+				: StreetItem.InteractionType.Kick);
 			PlayerViewRef.TriggerKick();
 		}
-		
+
 	}
 }

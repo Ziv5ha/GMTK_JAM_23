@@ -5,9 +5,10 @@ using UnityEngine;
 public class StreetItemView: MonoBehaviour {
 
 	[SerializeField] private SpriteRenderer spriteRenderer;
-	[SerializeField] private Sprite BrokenSprite;
+	[SerializeField] private List<Sprite> Sprites;
 	[SerializeField] private Sprite FixedSprite;
 	[SerializeField] private BoxCollider2D boxCollider2;
+	//[SerializeField] private bool _isPickableTrash;
 
 	[SerializeField] private StreetItemController StreetItemControllerRef; //theoriticy should be an action/event and not function call but hey. We have 24 hours.
 
@@ -20,7 +21,18 @@ public class StreetItemView: MonoBehaviour {
 		Debug.Log("exit " + col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
 	}
 
+	private void Start() {
+		if (Sprites.Count > 0) {
+			spriteRenderer.sprite = Sprites[Random.Range(0, Sprites.Count - 1)];
+		}
+	}
+
 	public void FixStreetItem() {
-		spriteRenderer.color = new Color(0, 255, 0);
+		//if (_isPickableTrash) {
+		//spriteRenderer.sprite = null;
+		//} else {
+		spriteRenderer.sprite = FixedSprite;
+		//}
+		//spriteRenderer.color = new Color(0, 255, 0);
 	}
 }
