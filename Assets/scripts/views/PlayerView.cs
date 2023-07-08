@@ -8,7 +8,15 @@ public class PlayerView: MonoBehaviour {
 	//[SerializeField] private Animator animator;
 
 	private enum MovementState {
-		idle, running//, jumping, falling, doubleJump
+		idle, running
+	}
+
+	public void SetCrouching(bool IsCrouching) {
+		if (IsCrouching) {
+			spriteRenderer.color = new Color(0, 0, 255);
+		} else {
+			spriteRenderer.color = new Color(255, 255, 255);
+		}
 	}
 
 	private void UpdateAnimation() {
@@ -20,17 +28,14 @@ public class PlayerView: MonoBehaviour {
 		} else if (playerRigidBody.velocity.x < 0) {
 			spriteRenderer.flipX = true;
 			movementState = MovementState.running;
+		} else if (playerRigidBody.velocity.y > 0) {
+			movementState = MovementState.running;
+		} else if (playerRigidBody.velocity.y < 0) {
+			movementState = MovementState.running;
 		} else {
 			movementState = MovementState.idle;
 		}
 
-		//if (playerRigidBody.velocity.y > .1f && !CanDoubleJump) {
-		//	movementState = MovementState.doubleJump;
-		//} else if (playerRigidBody.velocity.y > .1f && CanDoubleJump) {
-		//	movementState = MovementState.jumping;
-		//} else if (playerRigidBody.velocity.y < -.1f) {
-		//	movementState = MovementState.falling;
-		//}
 
 		//animator.SetInteger("movement", (int)movementState);
 
