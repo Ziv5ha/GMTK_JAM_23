@@ -17,13 +17,16 @@ public class PlayerController: MonoBehaviour {
 	}
 
 	[Header("Physics")]
-	[SerializeField] private float speed = 4.5f;
+	[SerializeField] private float speed = 3.5f;
 
 
 	void Update() {
 	}
 
 	public void Move(InputAction.CallbackContext context) {
+		if(IsCrouching){
+			return;
+		}
 		Vector2 inputVector = context.ReadValue<Vector2>();
 		playerRigidBody.velocity = new Vector2(inputVector.x, inputVector.y) * speed;
 	}
