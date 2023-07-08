@@ -31,10 +31,10 @@ public class PlayerView: MonoBehaviour {
 			return MovementState.crouch;
 		}
 		if (playerRigidBody.velocity.x > 0) {
-			spriteRenderer.flipX = false;
+			// spriteRenderer.flipX = false;
 			return MovementState.running;
 		} else if (playerRigidBody.velocity.x < 0) {
-			spriteRenderer.flipX = true;
+			// spriteRenderer.flipX = true;
 			return MovementState.running;
 		} else if (playerRigidBody.velocity.y > 0) {
 			return MovementState.running;

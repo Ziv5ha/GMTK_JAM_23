@@ -24,10 +24,15 @@ public class PlayerController: MonoBehaviour {
 	}
 
 	public void Move(InputAction.CallbackContext context) {
+		Vector2 inputVector = context.ReadValue<Vector2>();
+		float x = inputVector.x;
+		// check if x == 0 so as not to set the flipX when no button pressed
+		if(x!=0){
+			this.GetComponent<SpriteRenderer>().flipX = x<0 ;
+		}
 		if(IsCrouching){
 			return;
 		}
-		Vector2 inputVector = context.ReadValue<Vector2>();
 		playerRigidBody.velocity = new Vector2(inputVector.x, inputVector.y) * speed;
 	}
 
