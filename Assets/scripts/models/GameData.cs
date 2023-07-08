@@ -15,6 +15,10 @@ public class GameData: MonoBehaviour {
 		return streetFixed;
 	}
 
+	public void ResetGameData() {
+		_streetItems = new List<StreetItem>();
+	}
+
 	public void AddStreetItem(int ID, StreetItem.InteractionType interationType) {
 		_streetItems.Add(new StreetItem(ID, interationType));
 	}
