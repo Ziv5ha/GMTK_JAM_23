@@ -266,7 +266,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a8ec5e576454f0a8a6beb7a26f7fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameDataRef: {fileID: 1543944230}
+  StreetItemViewRef: {fileID: 0}
   ID: 0
   InteractionType: 0
 --- !u!1 &1543944229
@@ -569,6 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad3af0ad35ff4f94ae59accd92b3c1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StreetControllerRef: {fileID: 0}
 --- !u!4 &1543944231
 Transform:
   m_ObjectHideFlags: 0
