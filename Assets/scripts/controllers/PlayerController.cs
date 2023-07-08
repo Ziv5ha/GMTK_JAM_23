@@ -8,7 +8,8 @@ public class PlayerController: MonoBehaviour {
 	[SerializeField] private PlayerView PlayerViewRef;
 	//[SerializeField] private SpriteRenderer spriteRenderer;
 	[SerializeField] private GameData GameDataRef;
-
+	[SerializeField] private PlayerSounds PlayerSoundsRef;
+	
 	private bool _isCrouching;
 	public bool IsCrouching {
 		get {
@@ -47,6 +48,9 @@ public class PlayerController: MonoBehaviour {
 	public void Punch(InputAction.CallbackContext context) {
 		// call view punch.
 		if (context.performed) {
+			AudioSource audioData = GetComponent<AudioSource>();
+			PlayerSoundsRef.PlayPunch(IsCrouching);
+			Debug.Log("started");
 			GameDataRef.FixStreetItem(
 				IsCrouching
 				? StreetItem.InteractionType.CrouchPunch
@@ -58,6 +62,7 @@ public class PlayerController: MonoBehaviour {
 	public void Kick(InputAction.CallbackContext context) {
 		// call view kick.
 		if (context.performed) {
+			PlayerSoundsRef.PlayKick(IsCrouching);
 			GameDataRef.FixStreetItem(IsCrouching
 				? StreetItem.InteractionType.CrouchKick
 				: StreetItem.InteractionType.Kick);
