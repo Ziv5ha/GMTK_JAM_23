@@ -8,8 +8,7 @@ public class PlayerController: MonoBehaviour {
 	[SerializeField] private PlayerView PlayerViewRef;
 	//[SerializeField] private SpriteRenderer spriteRenderer;
 	[SerializeField] private GameData GameDataRef;
-	private float delay = 1f; 
-	private bool attackBlocked;
+	
 	private bool _isCrouching;
 	public bool IsCrouching {
 		get {
@@ -40,35 +39,22 @@ public class PlayerController: MonoBehaviour {
 	public void Punch(InputAction.CallbackContext context) {
 		// call view punch.
 		if (context.performed) {
-			if (IsCrouching) {
-				GameDataRef.FixStreetItem(StreetItem.InteractionType.CrouchPunch);
-				Debug.Log($"!@# Crouch Punch!");
-			} else {
-				GameDataRef.FixStreetItem(StreetItem.InteractionType.Punch);
-				PlayerViewRef.TriggerPunch();
-				Debug.Log("Punch!");
-			}
+			GameDataRef.FixStreetItem(
+				IsCrouching 
+				? StreetItem.InteractionType.CrouchPunch
+				:StreetItem.InteractionType.Punch
+			);
+			PlayerViewRef.TriggerPunch();		
 		}
 	}
 	public void Kick(InputAction.CallbackContext context) {
-		if(attackBlocked){
-			return;
-		}
-		// call view kick.
+				// call view kick.
 		if (context.performed) {
-			if (IsCrouching) {
-				GameDataRef.FixStreetItem(StreetItem.InteractionType.CrouchKick);
-				Debug.Log($"!@# Crouch Kick!");
-			} else {
-				GameDataRef.FixStreetItem(StreetItem.InteractionType.Kick);
-				Debug.Log("Kick!");
-			}
+			GameDataRef.FixStreetItem(IsCrouching 
+				? StreetItem.InteractionType.CrouchPunch
+				:StreetItem.InteractionType.Punch);
+			PlayerViewRef.TriggerKick();
 		}
-		attackBlocked = true;
-		StartCoroutine(DelayAttack());
-	}
-	private IEnumerator DelayAttack(){
-		yield return new WaitForSeconds(delay);
-		attackBlocked =false;
+		
 	}
 }
