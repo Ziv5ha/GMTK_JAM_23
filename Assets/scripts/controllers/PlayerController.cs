@@ -10,11 +10,11 @@ public class PlayerController: MonoBehaviour {
 	[SerializeField] private GameData GameDataRef;
 
 	private bool _isCrouching;
-	public bool IsCrouching{
+	public bool IsCrouching {
 		get {
 			return _isCrouching;
-			}
 		}
+	}
 
 	[Header("Physics")]
 	[SerializeField] private float speed = 7f;
@@ -27,7 +27,7 @@ public class PlayerController: MonoBehaviour {
 		Vector2 inputVector = context.ReadValue<Vector2>();
 		playerRigidBody.velocity = new Vector2(inputVector.x, inputVector.y) * speed;
 	}
-	
+
 	public void Crouch(InputAction.CallbackContext context) {
 		_isCrouching = context.performed;
 		if (context.performed) {

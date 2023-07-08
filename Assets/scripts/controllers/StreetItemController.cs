@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StreetItemController: MonoBehaviour {
-	[SerializeField] private GameData GameDataRef;
+	[SerializeField] private StreetItemView StreetItemViewRef;
+	private StreetController StreetControllerRef;
 
-	[SerializeField] private string ID;
-	[SerializeField] private StreetItem.InteractionType InteractionType;
+	public int ID;
+	public StreetItem.InteractionType InteractionType;
 
 	private void Start() {
-		GameDataRef.AddStreetItem(ID, InteractionType);
+		StreetControllerRef = GameObject.FindGameObjectWithTag("Singletons").GetComponent<StreetController>();
+		StreetControllerRef.AddStreetItem(this);
 	}
 
 	public void ChagneInRange(bool InRange) {
-		GameDataRef.ChagneInRange(ID, InRange);
+		StreetControllerRef.ChagneInRange(ID, InRange);
+	}
+
+	public void FixStreetItem() {
+		StreetItemViewRef.FixStreetItem();
 	}
 }
