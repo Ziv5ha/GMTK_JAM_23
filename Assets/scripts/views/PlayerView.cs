@@ -5,39 +5,49 @@ using UnityEngine;
 public class PlayerView: MonoBehaviour {
 	[SerializeField] private Rigidbody2D playerRigidBody;
 	[SerializeField] private SpriteRenderer spriteRenderer;
-	//[SerializeField] private Animator animator;
+	[SerializeField] private Animator animator;
+	[SerializeField] private PlayerController PlayerControllerRef;
 
 	private enum MovementState {
-		idle, running
+		idle, running, crouch
 	}
+	private void Update() {
+		UpdateAnimation();
+	}
+	private void UpdateAnimation()
+    {
+        MovementState movementState = GetAnimationState();
+		if(animator.GetInteger("movement") != (int)movementState){
 
-	public void SetCrouching(bool IsCrouching) {
-		if (IsCrouching) {
-			spriteRenderer.color = new Color(0, 0, 255);
-		} else {
-			spriteRenderer.color = new Color(255, 255, 255);
+		Debug.Log(movementState);
 		}
-	}
+        animator.SetInteger("movement", (int)movementState);
 
-	private void UpdateAnimation() {
-		MovementState movementState = MovementState.idle;
+    }
 
-		if (playerRigidBody.velocity.x > 0) {
-			spriteRenderer.flipX = false;
-			movementState = MovementState.running;
-		} else if (playerRigidBody.velocity.x < 0) {
-			spriteRenderer.flipX = true;
-			movementState = MovementState.running;
-		} else if (playerRigidBody.velocity.y > 0) {
-			movementState = MovementState.running;
-		} else if (playerRigidBody.velocity.y < 0) {
-			movementState = MovementState.running;
-		} else {
-			movementState = MovementState.idle;
+    private MovementState GetAnimationState()
+    {
+		if (PlayerControllerRef.IsCrouching){
+			return MovementState.crouch;
 		}
-
-
-		//animator.SetInteger("movement", (int)movementState);
-
-	}
+        if (playerRigidBody.velocity.x > 0)
+        {
+            spriteRenderer.flipX = false;
+            return MovementState.running;
+        }
+        else if (playerRigidBody.velocity.x < 0)
+        {
+            spriteRenderer.flipX = true;
+            return MovementState.running;
+        }
+        else if (playerRigidBody.velocity.y > 0)
+        {
+            return MovementState.running;
+        }
+        else if (playerRigidBody.velocity.y < 0)
+        {
+            return MovementState.running;
+        }
+        return MovementState.idle ;
+    }
 }

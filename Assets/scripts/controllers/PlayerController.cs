@@ -9,27 +9,30 @@ public class PlayerController: MonoBehaviour {
 	//[SerializeField] private SpriteRenderer spriteRenderer;
 	[SerializeField] private GameData GameDataRef;
 
-	public bool IsCrouching;
+	private bool _isCrouching;
+	public bool IsCrouching{
+		get {
+			return _isCrouching;
+			}
+		}
 
 	[Header("Physics")]
 	[SerializeField] private float speed = 7f;
 
 
 	void Update() {
-		PlayerViewRef.SetCrouching(IsCrouching);
 	}
 
 	public void Move(InputAction.CallbackContext context) {
 		Vector2 inputVector = context.ReadValue<Vector2>();
 		playerRigidBody.velocity = new Vector2(inputVector.x, inputVector.y) * speed;
 	}
+	
 	public void Crouch(InputAction.CallbackContext context) {
-		IsCrouching = context.performed;
+		_isCrouching = context.performed;
 		if (context.performed) {
-			PlayerViewRef.SetCrouching(true);
 			Debug.Log($"Crouch! performed: {IsCrouching}");
 		} else if (context.canceled) {
-			PlayerViewRef.SetCrouching(false);
 			Debug.Log($"Crouch! cancelled: {IsCrouching}");
 		}
 	}
