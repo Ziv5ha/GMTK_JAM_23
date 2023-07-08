@@ -6,7 +6,12 @@ public class StreetItemController: MonoBehaviour {
 	[SerializeField] private StreetItemView StreetItemViewRef;
 	private StreetController StreetControllerRef;
 
-	public int ID;
+	//public int ID = GetInstanceID();
+	public int ID {
+		get {
+			return GetInstanceID();
+		}
+	}
 	public StreetItem.InteractionType InteractionType;
 
 	private void Start() {

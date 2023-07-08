@@ -14,11 +14,11 @@ public class StreetItemView: MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D col) {
 		StreetItemControllerRef.ChagneInRange(true);
-		Debug.Log("enter " + col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+		//Debug.Log("enter " + col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
 	}
 	private void OnTriggerExit2D(Collider2D col) {
 		StreetItemControllerRef.ChagneInRange(false);
-		Debug.Log("exit " + col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+		//Debug.Log("exit " + col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
 	}
 
 	private void Start() {

@@ -20,14 +20,14 @@ public class GameData: MonoBehaviour {
 	}
 
 	public void FixStreetItem(StreetItem.InteractionType interationType) {
-		int itemFixed = -1;
+		int itemFixed = 0;
 		foreach (var streetItem in _streetItems) {
 			if (streetItem.StreetItemInteractionType == interationType && streetItem.InRange) {
 				streetItem.IsFixed = true;
 				itemFixed = streetItem.ID;
 			}
 		}
-		if (itemFixed >= 0) {
+		if (itemFixed != 0) {
 			StreetControllerRef.FixStreetItem(itemFixed);
 		}
 	}
