@@ -17,7 +17,7 @@ public class PlayerController: MonoBehaviour {
 	}
 
 	[Header("Physics")]
-	[SerializeField] private float speed = 7f;
+	[SerializeField] private float speed = 4.5f;
 
 
 	void Update() {
