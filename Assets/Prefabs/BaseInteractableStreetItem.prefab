@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!61 &73286670877733338
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 73286670877733339}
-  BrokenSprite: {fileID: 0}
+  Sprites: []
   FixedSprite: {fileID: 0}
   boxCollider2: {fileID: 73286670877733338}
   StreetItemControllerRef: {fileID: 73286670877733340}
@@ -143,6 +143,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StreetItemViewRef: {fileID: 73286670877733341}
-  StreetControllerRef: {fileID: 0}
-  ID: 0
   InteractionType: 0

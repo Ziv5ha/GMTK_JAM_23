@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!61 &8633345805724567851
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -103,7 +103,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.06}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.50000006, y: 0.029616814}
     oldSize: {x: 1, y: 1}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 8633345805724567852}
-  BrokenSprite: {fileID: 21300000, guid: 0725158710b396847b68b5bc0419a01a, type: 3}
+  Sprites: []
   FixedSprite: {fileID: 21300000, guid: e3e21ef044cd5cf4a9a09e6b20250be4, type: 3}
   boxCollider2: {fileID: 8633345805724567851}
   StreetItemControllerRef: {fileID: 8633345805724567849}
@@ -143,5 +143,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StreetItemViewRef: {fileID: 8633345805724567850}
-  ID: 0
   InteractionType: 0
