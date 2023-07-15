@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Street1
       objectReference: {fileID: 0}
+    - target: {fileID: 2796547990695448980, guid: 4794a70778b040e4d888dc7113f15c6c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2796547990695448981, guid: 4794a70778b040e4d888dc7113f15c6c, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -911,6 +915,7 @@ MonoBehaviour:
   - {fileID: 4326943690177055276, guid: 9f1b8351178824302b3875e19acc364a, type: 3}
   ActiveStreets:
   - {fileID: 1586453801}
+  _animationDuration: 0.8
 --- !u!1 &1558453126
 GameObject:
   m_ObjectHideFlags: 0

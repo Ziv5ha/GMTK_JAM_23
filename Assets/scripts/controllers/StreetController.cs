@@ -9,6 +9,9 @@ public class StreetController: MonoBehaviour {
 	[SerializeField] private List<GameObject> ActiveStreets = new List<GameObject>();
 	[SerializeField] private Dictionary<int, StreetItemController> StreetItemsByID = new Dictionary<int, StreetItemController>();
 
+	private float _startTime;
+	[SerializeField] private float _animationDuration;
+
 	public void AddStreetItem(StreetItemController streetItemController) {
 		GameDataRef.AddStreetItem(streetItemController.ID, streetItemController.InteractionType);
 		StreetItemsByID[streetItemController.ID] = streetItemController;
@@ -27,17 +30,17 @@ public class StreetController: MonoBehaviour {
 	private void NextStreet() {
 		GameDataRef.ResetGameData();
 		ActiveStreets.Add(Instantiate(StreetsPrefabs[Random.Range(0, StreetsPrefabs.Count)], new Vector3(8.3f, -0.3f, 0), Quaternion.identity));
+		_startTime = Time.time;
 		StartCoroutine(MoveStreets());
 
 	}
 
 	private IEnumerator MoveStreets() {
-		bool streetsShouldMove = true;
-		while (streetsShouldMove) {
-			foreach (var street in ActiveStreets) {
-				street.transform.position = new Vector3(street.transform.position.x - .1f, street.transform.position.y, 0);
-				streetsShouldMove = street.transform.position != new Vector3(-0.1f, -0.3f, 0);
-			}
+        float delta = (Time.time - _startTime) / _animationDuration;
+		while (delta < 1) {
+			ActiveStreets[0].transform.position = Vector3.Lerp(new Vector3(-0.1f, -0.3f, 0), new Vector3(-8.4f, -0.3f, 0), delta);
+			ActiveStreets[1].transform.position = Vector3.Lerp(new Vector3(8.3f, -0.3f, 0), new Vector3(-0.1f, -0.3f, 0), delta);
+			delta = (Time.time - _startTime) / _animationDuration;
 			yield return null;
 		}
 		if (ActiveStreets.Count > 1) {

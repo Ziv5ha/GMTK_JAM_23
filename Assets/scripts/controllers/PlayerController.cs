@@ -50,7 +50,6 @@ public class PlayerController: MonoBehaviour {
 		if (context.performed) {
 			AudioSource audioData = GetComponent<AudioSource>();
 			PlayerSoundsRef.PlayPunch(IsCrouching);
-			Debug.Log("started");
 			GameDataRef.FixStreetItem(
 				IsCrouching
 				? StreetItem.InteractionType.CrouchPunch
